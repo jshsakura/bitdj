@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+
+{% block headblock%}
+
+{% endblock headblock %}
+
+{% block mainblock%}
+
+			<div class="col-sm-8">
+				<article class="single-blog contact-us">
+					<div class="post-thumb">
+						<div class="entry-quote-post-format">
+							<blockquote>
+								<p><i class="fa fa-quote-left"></i>Liberty without learning is always in peril; learning without liberty is always in vain</p>
+								<h5>배움이 없는 자유는 언제나 위험하며 자유가 없는 배움은 언제나 헛된 일입니다.</h5>
+								<h3>John F. Kennedy</h3>
+							</blockquote>
+						</div>
+					</div>
+					<div class="post-content">
+						<div class="leave-comment">
+							<h4>POST</h4>
+							<form class="form-horizontal contact-form"   method="post" action="sendemail.php"
+							       >
+								<div class="form-group">
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="name" name="name"
+										       placeholder="Name" value="{{user.username}}" required>
+									</div>
+									<div class="col-md-6">
+										<input type="email" class="form-control" id="email" name="email"
+										       placeholder="Email" value="{{user.email}}" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<input type="text" class="form-control" id="subject" name="subject"
+										       placeholder="Subject">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<textarea class="form-control" rows="6" name="message"
+										          placeholder="Write Massage"></textarea>
+									</div>
+								</div>
+								<button type="submit" class="btn send-btn"> SEND POST</button>
+							</form>
+						</div>
+					</div>
+				</article>
+
+			</div>
+
+{% endblock mainblock %}
+

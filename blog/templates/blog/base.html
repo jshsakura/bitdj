@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<!-- Document Settings -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+	<!-- Page Title -->
+	<title>DxJ Workspace - Blog</title>
+    <!-- Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i%7cOswald:300,400,500,600,700%7cPlayfair+Display:400,400i,700,700i"
+		rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700,700i" rel="stylesheet">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/assets/css/slick-theme.css">
+	<link rel="stylesheet" href="/static/assets/css/slick.css">
+	<link rel="stylesheet" href="/static/style.css">
+	<!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/static/assets/js/html5shiv.js"></script>
+	<script src="/static/assets/js/respond.js"></script>
+	<![endif]-->
+{% block headblock%}
+{% endblock %}
+</head>
+
+<body class="material-home">
+<header class="kotha-menu marketing-menu">
+	<nav class="navbar  navbar-default">
+		<div class="container">
+			<div class="menu-content">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					        data-target="#myNavbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="top-social-icons list-inline pull-right">
+						<!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+						<li class="top-search">
+							<a href="#" class="sactive">
+								<i class="fa fa-search"></i>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav text-uppercase pull-left">
+
+						<!--<li><a href="/">Portfolio</a></li>-->
+						<li><a href="/blog">Blog</a></li>
+						<li><a href="/contact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="show-search">
+					<form role="search" method="get" id="searchform" action="#">
+						<input type="text" placeholder="Search and hit enter..." name="s" id="s">
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<div class="kotha-logo text-center">
+		<h1><a href="/blog"><img src="/static/assets/images/portfolio/logo.png" style="width:350px" alt="kothPro"></a></h1>
+	</div>
+</header>
+
+
+<div class="kotha-default-content material-blog">
+	<div class="container">
+		<div class="row">
+{% block mainblock%}
+{% endblock %}
+
+            <div class="col-sm-4">
+				<div class="kotha-sidebar material-sidebar">
+					<aside class="widget about-me-widget  text-center">
+						<div class="about-me-content">
+							<div class="about-me-img">
+								<img src="/static/assets/images/blog/rainbow.gif" style="width:50%" alt="" class="img-me img-circle">
+								<h2 class="text-uppercase">DucksLife X Jshsakura</h2>
+								<p>Python X Java Developer</p>
+							</div>
+						</div>
+						<div class="social-share">
+							<ul class="list-inline">
+								<li><a class="s-facebook" href=""><i class="fa fa-facebook"></i></a></li>
+								<li><a class="s-twitter" href=""><i class="fa fa-twitter"></i></a></li>
+								<li><a class="s-google-plus" href=""><i class="fa fa-google-plus"></i></a></li>
+								<li><a class="s-linkedin" href=""><i class="fa fa-linkedin"></i></a></li>
+								<li><a class="s-instagram" href=""><i class="fa fa-instagram"></i></a></li>
+							</ul>
+						</div>
+
+                        <br>
+
+
+						{% if user.username == "devdj" %}
+                        <a href="/post_new" class="btn btn-default text-uppercase text-center">
+                            Post
+						</a>
+						{% endif %}
+					</aside>
+					<!--<aside class="widget news-letter-widget">
+						<h2 class="widget-title text-uppercase text-center">Get Newsletter</h2>
+						<form action="#">
+							<input type="email" placeholder="Your email address" required>
+							<input type="submit" value="Subscribe Now"
+							       class="text-uppercase text-center btn btn-subscribe">
+						</form>
+					</aside>
+					<aside class="widget widget-popular-post">
+						<h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
+						<ul>
+							<li>
+								<a href="#" class="popular-img"><img src="/static/assets/images/p-1.jpg" alt="">
+								</a>
+								<div class="p-content">
+									<h4><a href="#" class="text-uppercase">A Mindblowing Interior Design</a></h4>
+									<span class="p-date">February 15, 2016</span>
+								</div>
+							</li>
+							<li><a href="#" class="popular-img"><img src="/static/assets/images/p-2.jpg" alt="">
+							</a>
+								<div class="p-content">
+									<h4><a href="#" class="text-uppercase">A Table with amazing books</a></h4>
+									<span class="p-date">February 15, 2016</span>
+								</div>
+							</li>
+							<li>
+								<a href="#" class="popular-img"><img src="/static/assets/images/p-3.jpg" alt="">
+								</a>
+								<div class="p-content">
+									<h4><a href="#" class="text-uppercase">Home is peaceful Place</a></h4>
+									<span class="p-date">February 15, 2016</span>
+								</div>
+							</li>
+						</ul>
+					</aside>-->
+					<aside class="widget latest-post-widget">
+						<h2 class="widget-title text-uppercase text-center">Latest Posts</h2>
+						<ul>
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="popular-img"><img src="/static/assets/images/recent-1.jpg" alt="">
+									</a>
+								</div>
+								<div class="latest-post-content">
+									<h2 class="text-uppercase"><a href="#">A Theme to Tell Stories</a></h2>
+									<p>April 20, 2017</p>
+								</div>
+							</li>
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="popular-img"><img src="/static/assets/images/recent-2.jpg" alt="">
+									</a>
+								</div>
+								<div class="latest-post-content">
+									<h2 class="text-uppercase"><a href="#">Just Wondering at Beach</a></h2>
+									<p>May 27, 2017</p>
+								</div>
+							</li>
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="popular-img"><img src="/static/assets/images/recent-3.jpg" alt="">
+									</a>
+								</div>
+								<div class="latest-post-content">
+									<h2 class="text-uppercase"><a href="#">Lorem Ipsum Dolor sit amet</a></h2>
+									<p>April 20, 2017</p>
+								</div>
+							</li>
+							<li class="media">
+								<div class="media-left">
+									<a href="#" class="popular-img"><img src="/static/assets/images/recent-4.jpg" alt="">
+									</a>
+								</div>
+								<div class="latest-post-content">
+									<h2 class="text-uppercase"><a href="#">Lorem Ipsum Dolor sit amet</a></h2>
+									<p>May 27, 2017</p>
+								</div>
+							</li>
+						</ul>
+					</aside>
+					<aside class="widget insta-widget">
+						<h2 class="widget-title text-uppercase text-center">INSTAGRAM FEED</h2>
+						<div class="instagram-feed">
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg1" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh1"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl1"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink1" href="" class="insta-link"></a>
+							</div>
+
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg2" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh2"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl2"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink2" href="" class="insta-link"></a>
+							</div>
+
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg3" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh3"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl3"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink3" href="" class="insta-link"></a>
+							</div>
+
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg4" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh4"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl4"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink4" href="" class="insta-link"></a>
+							</div>
+
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg5" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh5"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl5"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink5" href="" class="insta-link"></a>
+							</div>
+
+							<div class="single-instagram">
+								<a href="">
+									<img id="insta-simg6" src="" alt="">
+								</a>
+								<div class="insta-overlay">
+									<div class="insta-meta">
+										<ul class="list-inline text-center">
+											<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-sh6"></span></li>
+											<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-sl6"></span></li>
+										</ul>
+									</div>
+								</div>
+								<a id="insta-slink6" href="" class="insta-link"></a>
+							</div>
+
+
+						</div>
+					</aside>
+					<aside class="widget add-widget">
+						<h2 class="widget-title text-uppercase text-center">Advertisement</h2>
+
+						<div class="add-image">
+							<a href=""><img src="/static/assets/images/add-image.jpg" alt=""></a>
+						</div>
+					</aside>
+				</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container-fluid insta-feed text-center">
+	<h2 class="text-uppercase">DXJ WORKSPACE @ <a href="">PROJECT</a></h2>
+	<div id="footer-instagram" class="footer-insta">
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img1" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h1"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l1"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link1" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img2" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h2"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l2"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link2" href="" class="insta-link"></a>
+			</div>
+
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img3" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h3"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l3"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link3" href="" class="insta-link"></a>
+			</div>
+
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img4" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h4"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l4"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link4" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img5" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h5"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l5"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link5" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img6" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h6"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l6"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link6" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img7" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h7"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l7"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link7" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img8" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h8"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l8"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link8" href="" class="insta-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<div class="footer-widget-row" >
+			<div class="footer-widget text-center">
+				<div class="widget ">
+					<img src="/static/assets/images/portfolio/logo-w.png" alt="">
+				</div>
+				<p>Ducks Life X Jshsakura</p>
+
+			</div>
+			<div class="footer-widget">
+				<div class="widget">
+					<div class="address">
+					<h5 class="text-uppercase">contact Info</h5>
+					<p> Seoul , Korea</p>
+					<p> Phone: +82 10 2520 0725</p>
+					<a href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a>
+				</div>
+				</div>
+			</div>
+
+			<div class="footer-widget">
+				<h5 class="text-uppercase">System Info</h5>
+				<p>Django 2.0 & Python 3.5</p>
+				<p>Nginx 1.10</p>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid text-center ft-copyright">
+		<p>&copy;  2018   <a href="">DxJ Workspace </a> - Designed with by <a href="http://shapedtheme.com">ShapedTheme</a></p>
+	</div>
+</footer>
+<div class="scroll-up">
+	<a href="#"><i class="fa fa-angle-up"></i></a>
+</div>
+<!--//Script//-->
+<script src="/static/assets/js/jquery-1.12.4.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/slick.min.js"></script>
+<script src="/static/assets/js/main.js"></script>
+
+{% block jsblock%}
+{% endblock %}
+<script>
+		jQuery(function($) {
+        var tocken = "3529604541.db9efb2.04fbc722662e49c796da3479b515380a"; /* Access Tocken 입력 */
+        var count = "10";
+        $.ajax({
+            type: "GET",
+            dataType: "jsonp",
+            cache: false,
+            url: "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + tocken + "&count=" + count,
+            success: function(response) {
+             if ( response.data.length > 0 ) {
+                  for(var i = 0; i < response.data.length; i++) {
+
+
+					   if ( response.data[i].caption != undefined ) {
+					   		//$("#insta-img"+(i+1)).prop("alt",response.data[i].caption.text);
+					   		$("#insta-simg"+(i+1)).prop("alt",response.data[i].caption.text);
+					   }
+					   //$("#insta-img"+(i+1)).prop("src",response.data[i].images.thumbnail.url);
+                       //$("#insta-h"+(i+1)).text(response.data[i].likes.count);
+                       //$("#insta-l"+(i+1)).text(response.data[i].comments.count);
+					   //$("#insta-link"+(i+1)).prop("href",response.data[i].link);
+
+					   $("#insta-simg"+(i+1)).prop("src",response.data[i].images.thumbnail.url);
+					   $("#insta-sh"+(i+1)).text(response.data[i].likes.count);
+                       $("#insta-sl"+(i+1)).text(response.data[i].comments.count);
+					   $("#insta-slink"+(i+1)).prop("href",response.data[i].link);
+                  }
+             }
+
+            }
+           });
+   });
+
+</script>
+</body>
+</html>

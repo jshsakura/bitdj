@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!-- Document Settings -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/static/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+	<!-- Page Title -->
+	<title>DxJ Workspace</title>
+	<!-- Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i%7cOswald:300,400,500,600,700%7cPlayfair+Display:400,400i,700,700i"
+		rel="stylesheet">
+	<!-- Styles -->
+	<link rel="stylesheet" href="static/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="static/assets/css/slick-theme.css">
+	<link rel="stylesheet" href="static/assets/css/slick.css">
+	<link rel="stylesheet" href="static/assets/css/prettyPhoto.css">
+	<link rel="stylesheet" href="static/style.css">
+	<!-- HTML5 shim and Respond.js IE9 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="static/assets/js/html5shiv.js"></script>
+	<script src="static/assets/js/respond.js"></script>
+	<![endif]-->
+
+
+	<style>
+		@import url(http://fonts.googleapis.com/earlyaccess/cabinvfbeta.css);
+		.logo{
+			font-family: 'Cabin VF Beta', sans-serif;
+		}
+	</style>
+</head>
+<body>
+<header class="kotha-menu marketing-menu">
+	<nav class="navbar  navbar-default">
+		<div class="container">
+			<div class="menu-content">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					        data-target="#myNavbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="top-social-icons list-inline pull-right">
+						<!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+						<li class="top-search">
+							<!--<a href="#" class="sactive">
+								<i class="fa fa-search"></i>
+							</a>-->
+						</li>
+					</ul>
+					<ul class="nav navbar-nav text-uppercase pull-left">
+						<li><a href="/" class="active">Portfolio</a></li>
+						<!--<li><a href="/contact">Contact</a></li>-->
+					</ul>
+				</div>
+				<div class="show-search">
+					<form role="search" method="get" id="searchform" action="#">
+						<input type="text" placeholder="Search and hit enter..." name="s" id="s">
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<!--<div class="kotha-logo text-center">
+		<h1><a href="/" class="logo">
+			<img src="static/assets/images/portfolio/logo.png" style="width:350px" alt="DxJ"/></a></h1>
+	</div>-->
+
+</header>
+<div class="kotha-default-content material-blog">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+
+				{% for portfolio in Portfolios %}
+				<div class="col-sm-6">
+					<article class="portfolio  post-grid single-blog">
+						<div class="post-thumb">
+							<a href="{{ portfolio.url }}"><img src="{{ portfolio.img_src }}" alt="{{ portfolio.tag }}"></a>
+							<div class="post-thumb-overlay text-center">
+								<div class="text-uppercase text-center">
+
+									<a href="{{ portfolio.img_src }}" data-rel="prettyPhoto[gallery]" ><i class="fa fa-search"></i></a>
+									<a href="{{ portfolio.url }}"><i class="fa fa-link"></i></a>
+
+								</div>
+							</div>
+						</div>
+						<div class="post-content">
+							<header class="entry-header text-center text-uppercase">
+								<h6><a href="{{ portfolio.url }}">{{ portfolio.tag }}</a></h6>
+
+								<h1 ><a href="{{ portfolio.url }}">{{ portfolio.title }} </a></h1>
+
+								<h5 ><a href="{{ portfolio.url }}">{{ portfolio.text }} </a></h5>
+
+
+								<!--<h6>{{ portfolio.published_date }}</h6>-->
+							</header>
+						</div>
+					</article>
+				</div>
+				{% endfor %}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid insta-feed text-center">
+	<h2 class="text-uppercase">dxj workspace @ <a href="">Project</a></h2>
+	<div id="footer-instagram" class="footer-insta">
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img1" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h1"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l1"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link1" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img2" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h2"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l2"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link2" href="" class="insta-link"></a>
+			</div>
+
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img3" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h3"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l3"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link3" href="" class="insta-link"></a>
+			</div>
+
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img4" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h4"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l4"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link4" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img5" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h5"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l5"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link5" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img6" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h6"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l6"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link6" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img7" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h7"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l7"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link7" href="" class="insta-link"></a>
+			</div>
+		</div>
+		<div class="item">
+			<div class="single-instagram">
+				<a href="">
+					<img id="insta-img8" src="" alt="">
+				</a>
+				<div class="insta-overlay">
+					<div class="insta-meta">
+						<ul class="list-inline text-center">
+							<li><a href=""><i class="fa fa-heart-o"></i></a> <span id="insta-h8"></span></li>
+							<li><a href=""><i class="fa fa-comment-o"></i></a> <span id="insta-l8"></span></li>
+						</ul>
+					</div>
+				</div>
+				<a id="insta-link8" href="" class="insta-link"></a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<footer>
+	<div class="container">
+		<div class="footer-widget-row" >
+			<div class="footer-widget text-center">
+				<div class="widget ">
+					<img src="/static/assets/images/portfolio/logo-w.png" alt="">
+				</div>
+				<p><h5>Ducks Life X Jshsakura</h5></p>
+
+			</div>
+			<div class="footer-widget">
+				<div class="widget">
+					<div class="address">
+					<h5 class="text-uppercase">contact Info</h5>
+					<p> Seoul , Korea</p>
+					<p> Phone: +82 10 2520 0725</p>
+					<h5><a href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a></h5>
+				</div>
+				</div>
+			</div>
+
+			<div class="footer-widget">
+				<h5 class="text-uppercase">System Info</h5>
+				<p>Django 2.0 & Python 3.5</p>
+				<p>Nginx 1.10</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid text-center ft-copyright">
+		<p>&copy;  2018   <a href="">DxJ Workspace </a> - Designed with by <a href="http://shapedtheme.com">ShapedTheme</a></p>
+	</div>
+</footer>
+<div class="scroll-up">
+	<a href="#"><i class="fa fa-angle-up"></i></a>
+</div>
+<!--//Script//-->
+<script src="static/assets/js/jquery-1.12.4.min.js"></script>
+<script>
+		jQuery(function($) {
+        var tocken = "3529604541.db9efb2.04fbc722662e49c796da3479b515380a"; /* Access Tocken 입력 */
+        var count = "10";
+        $.ajax({
+            type: "GET",
+            dataType: "jsonp",
+            cache: false,
+            url: "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + tocken + "&count=" + count,
+            success: function(response) {
+             if ( response.data.length > 0 ) {
+                  for(var i = 0; i < response.data.length; i++) {
+                       $("#insta-img"+(i+1)).prop("src",response.data[i].images.thumbnail.url);
+
+					   if ( response.data[i].caption != undefined ) {
+					   		$("#insta-img"+(i+1)).prop("alt",response.data[i].caption.text);
+					   }
+
+                       $("#insta-h"+(i+1)).text(response.data[i].likes.count);
+                       $("#insta-l"+(i+1)).text(response.data[i].comments.count);
+					   $("#insta-link"+(i+1)).prop("href",response.data[i].link);
+                  }
+             }
+
+            }
+           });
+   });
+
+</script>
+<script src="static/assets/js/bootstrap.min.js"></script>
+<script src="static/assets/js/slick.min.js"></script>
+<script src="static/assets/js/jquery.prettyPhoto.js"></script>
+
+<script type="text/javascript">
+
+   //pretty Photo
+    $("a[data-rel^='prettyPhoto']").prettyPhoto({
+        animation_speed: 'normal',
+        slideshow: 5000,
+        autoplay_slideshow: true
+    });
+
+</script>
+<script src="static/assets/js/main.js"></script>
+
+</body>
+</html>
