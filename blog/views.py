@@ -4,11 +4,31 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from .models import Post
 from .forms import UploadFileForm, PostForm
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
+
 
 def post_list(request):
-    user = request.user
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(Coalesce('published_date','created_date').desc())
-    return render(request, 'blog/post_list.html', {'posts': posts,'user': user})
+    posts_all = Post.objects.filter(published_date__lte=timezone.now()).order_by(Coalesce('published_date','created_date').desc())
+
+    paginator = Paginator(posts_all, 5)  # Show 20 contacts per page
+
+    try:
+        page = request.GET.get('page','1')
+    except:
+        page = 1
+
+    try:
+        post_paging = paginator.page(page)
+    except(EmptyPage, InvalidPage):
+        post_paging = paginator.page(1)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        post_paging = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        post_paging = paginator.page(paginator.num_pages)
+
+    return render(request, 'blog/post_list.html', {'posts': post_paging})
 
 
 def contact(request):

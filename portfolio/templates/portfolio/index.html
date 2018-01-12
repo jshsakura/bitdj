@@ -118,8 +118,11 @@
 							</a>
 							<div class="post-thumb-overlay text-center">
 								<div class="text-uppercase text-center">
-
+								{% if portfolio.filtered_image %}
+									<a href="{{ portfolio.filtered_image.url }}" data-rel="prettyPhoto[gallery]" ><i class="fa fa-search"></i></a>
+								{% else %}
 									<a href="{{ portfolio.image.url }}" data-rel="prettyPhoto[gallery]" ><i class="fa fa-search"></i></a>
+								{% endif %}
 									<a href="{{ portfolio.url }}"><i class="fa fa-link"></i></a>
 
 								</div>

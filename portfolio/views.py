@@ -2,7 +2,6 @@ from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.utils import timezone
 from django.shortcuts import redirect
-from portfolio.forms import PortfolioForm
 from .models import Portfolio
 
 def index(request):
