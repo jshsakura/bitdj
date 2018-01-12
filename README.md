@@ -3,4 +3,4 @@
 # Duck's Life X Jshsakura
 > Perfectionists with Deadlines.
 
-> Python Django Project
+- url : [jshsakura.iptime.org](http://jshsakura.iptime.org)
