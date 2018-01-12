@@ -4,14 +4,16 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.core.files.images import ImageFile
 from django.db.models import ImageField
+from django.utils.safestring import mark_safe
+
 
 class Portfolio(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,)
     title = models.CharField(max_length=200)
     text = models.TextField()
-    image = models.ImageField(upload_to='media/portfolio',null=True)
-    filtered_image = models.ImageField(upload_to='media/portfolio/%Y/%m/%d/filtered', blank=True, null=True)
+    image = models.ImageField(upload_to='portfolio',null=True)
+    filtered_image = models.ImageField(upload_to='portfolio/%Y/%m/%d/filtered', blank=True, null=True)
 
     tag = models.CharField(max_length=200,blank=True, null=True)
     url = models.CharField(max_length=1000,blank=True, null=True)
