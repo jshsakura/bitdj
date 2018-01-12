@@ -1,4 +1,5 @@
+'<center>'
 ![dxjworkspace](http://jshsakura.iptime.org/static/assets/images/portfolio/logo.png)
-
-# bitdj
-all in
+'</center>'
+# Duck's Life X Jshsakura
+> Perfectionists with Deadlines.
