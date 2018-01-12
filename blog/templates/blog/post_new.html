@@ -20,8 +20,11 @@
 					<div class="post-content">
 						<div class="leave-comment">
 							<h4>POST</h4>
-							<form class="form-horizontal contact-form"   method="post" action="sendemail.php"
-							       >
+							<form class="form-horizontal contact-form"   method="post" action='' enctype="multipart/form-data">
+								{% csrf_token %}
+								<table>
+									{{ form.as_table }}
+								</table>
 								<div class="form-group">
 									<div class="col-md-6">
 										<input type="text" class="form-control" id="name" name="name"

@@ -1,6 +1,8 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.utils import timezone
+from django.shortcuts import redirect
+from portfolio.forms import PortfolioForm
 from .models import Portfolio
 
 def index(request):
@@ -12,3 +14,21 @@ def plex(request):
 
     return render(request, 'portfolio/plex.html', {})
 
+
+
+
+# def create(request):
+#     if request.method == "GET":
+#         form = PortfolioForm()
+#     elif request.method == "POST":
+#         form = PortfolioForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             obj = form.save()
+#             return redirect(obj)
+#
+#     ctx = {
+#         'form': form,
+#     }
+#
+#     return render(request, 'edit.html', ctx)

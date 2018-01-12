@@ -11,7 +11,16 @@
 				{% for post in posts %}
                 <article class="single-blog">
 					<div class="post-thumb">
-						<a href="{% url 'post_detail' pk=post.pk %}"><img src="{{ post.post_img }}" alt=""></a>
+						<a href="{% url 'post_detail' pk=post.pk %}">
+							{% if post.photo %}
+							path :{{ post.photo.path }} # /Users/nickname/documents/practice/media/jeju_pic.png
+							url : {{ post.photo.url }} # /media/jeju_pic.png
+								<img src="{{ post.photo.url }}" alt="">
+							{% else %}
+								<img src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+							{% endif %}
+
+						</a>
 					</div>
 					<div class="post-content">
 						<div class="entry-header text-left text-uppercase">

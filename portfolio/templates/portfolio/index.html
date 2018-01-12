@@ -78,7 +78,7 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav text-uppercase pull-left">
-						<li><a href="/" class="active">Portfolio</a></li>
+						<li><a href="/" class="active">perfectionists with deadlines.</a></li>
 						<!--<li><a href="/contact">Contact</a></li>-->
 					</ul>
 				</div>
@@ -106,14 +106,20 @@
 				<div class="row">
 
 				{% for portfolio in Portfolios %}
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<article class="portfolio  post-grid single-blog">
 						<div class="post-thumb">
-							<a href="{{ portfolio.url }}"><img src="{{ portfolio.img_src }}" alt="{{ portfolio.tag }}"></a>
+							<a href="{{ portfolio.url }}">
+								{% if portfolio.image %}
+									<img src="{{ portfolio.image.url }}" alt="" style="border-bottom:1px solid #e6e6e6;">
+								{% else %}
+									<img src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+								{% endif %}
+							</a>
 							<div class="post-thumb-overlay text-center">
 								<div class="text-uppercase text-center">
 
-									<a href="{{ portfolio.img_src }}" data-rel="prettyPhoto[gallery]" ><i class="fa fa-search"></i></a>
+									<a href="{{ portfolio.image.url }}" data-rel="prettyPhoto[gallery]" ><i class="fa fa-search"></i></a>
 									<a href="{{ portfolio.url }}"><i class="fa fa-link"></i></a>
 
 								</div>
@@ -293,9 +299,9 @@
 				<div class="widget">
 					<div class="address">
 					<h5 class="text-uppercase">contact Info</h5>
-					<p> Seoul , Korea</p>
-					<p> Phone: +82 10 2520 0725</p>
-					<h5><a href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a></h5>
+					<p> Seoul , Incheon Korea</p>
+						<h5><a style="color:#ffffff" href="mailto:ejrgus3@gmail.com">ejrgus3@gmail.com</a></h5>
+						<h5><a style="color:#ffffff" href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a></h5>
 				</div>
 				</div>
 			</div>
@@ -304,12 +310,13 @@
 				<h5 class="text-uppercase">System Info</h5>
 				<p>Django 2.0 & Python 3.5</p>
 				<p>Nginx 1.10</p>
+				<p>Php7 , Java8</p>
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid text-center ft-copyright">
-		<p>&copy;  2018   <a href="">DxJ Workspace </a> - Designed with by <a href="http://shapedtheme.com">ShapedTheme</a></p>
+		<p>&copy;  2015   <a href="">DxJ Workspace </a> - Designed with by <a href="https://wrapbootstrap.com">Wrapbootstrap</a></p>
 	</div>
 </footer>
 <div class="scroll-up">

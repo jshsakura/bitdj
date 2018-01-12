@@ -1,0 +1,9 @@
+<div class="{{ widget.wrapper_class }}">
+    <textarea id="id-{{ widget.name }}" name="{{ widget.name }}">{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+    <script>
+        simplemde = new SimpleMDE({
+            element: document.getElementById("id-{{ widget.name }}"),
+            {% autoescape off %}{{ widget.options }}{% endautoescape %}
+        });
+    </script>
+</div>
