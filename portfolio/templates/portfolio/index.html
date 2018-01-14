@@ -72,9 +72,9 @@
 						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
 						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
 						<li class="top-search">
-							<!--<a href="#" class="sactive">
+							<a href="#" class="sactive">
 								<i class="fa fa-search"></i>
-							</a>-->
+							</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav text-uppercase pull-left">
@@ -83,8 +83,9 @@
 					</ul>
 				</div>
 				<div class="show-search">
-					<form role="search" method="get" id="searchform" action="#">
-						<input type="text" placeholder="Search and hit enter..." name="s" id="s">
+					<form role="search" method="POST" id="searchform" action="{% url 'index' %}">
+						{% csrf_token %}
+						<input type="text" name="search_text" placeholder="Search and hit enter..." id="search_text" value="{{ search_text }}" >
 					</form>
 				</div>
 
@@ -283,6 +284,7 @@
 				<a id="insta-link8" href="" class="insta-link"></a>
 			</div>
 		</div>
+
 	</div>
 
 </div>

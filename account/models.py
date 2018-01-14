@@ -53,6 +53,45 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=30,
         unique=True
     )
+
+    about = models.TextField(
+        verbose_name=_('About'),
+        max_length=255,
+        blank = True, null = True,
+    )
+
+    facebook_url = models.CharField(
+        verbose_name=_('Facebook link'),
+        max_length=255,
+        blank=True, null=True,
+    )
+
+    twitter_url = models.CharField(
+        verbose_name=_('Twitter link'),
+        max_length=255,
+        blank=True, null=True,
+    )
+
+    pinterest_url = models.CharField(
+        verbose_name=_('Pinterest link'),
+        max_length=255,
+        blank=True, null=True,
+    )
+
+    instagram_url = models.CharField(
+        verbose_name=_('Instagram link'),
+        max_length=255,
+        blank=True, null=True,
+    )
+
+    gogle_plus_url = models.CharField(
+        verbose_name=_('Gogle plus link'),
+        max_length=255,
+        blank=True, null=True,
+    )
+
+    image = models.ImageField(upload_to='profile_image/%Y/%m/%d', blank=True, null=True)
+
     is_active = models.BooleanField(
         verbose_name=_('Is active'),
         default=True
@@ -61,6 +100,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name=_('Date joined'),
         default=timezone.now
     )
+
+
     # 이 필드는 레거시 시스템 호환을 위해 추가할 수도 있다.
     salt = models.CharField(
         verbose_name=_('Salt'),
@@ -83,6 +124,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return self.nickname
+
+    def get_image(self):
+        return self.image
+
+    def get_about(self):
+        return self.about
+
+    def get_facebook(self):
+        return self.facebook_url
+
+    def get_twitter(self):
+        return self.twitter_url
+
+    def get_pinterest(self):
+        return self.pinterest_url
+
+    def get_instagram(self):
+        return self.instagram_url
+
+    def get_google_plus(self):
+        return self.gogle_plus_url
 
     def get_short_name(self):
         return self.nickname

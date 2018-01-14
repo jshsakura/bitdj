@@ -176,16 +176,27 @@
 							<li class="media">
 								<div class="media-left">
 									{% if top4s.image %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:105px" src="{{ top4s.image.url }}" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px" src="{{ top4s.image.url }}" alt="">
 									</a>
 									{% else %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:105px" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
 									</a>
 									{% endif %}
 								</div>
 								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="{% url 'post_detail' pk=top4s.pk %}">{{ top4s.title }}</a> [{{ top4s.comments.count }}]</h2>
-									<p>{{ top4s.published_date }}</p>
+									<h2 class="text-uppercase">
+										<a href="{% url 'post_detail' pk=top4s.pk %}">
+										{% if top4s.title|length > 15 %}
+										{{ top4s.title|slice:"0:15" }}...
+										{% else %}
+										{{ top4s.title }}
+										{% endif %}
+										</a>
+									</h2>
+									<p>
+										조회수 : {{ top4s.hit }}<br>
+										댓글수 : {{ top4s.comments.count }}
+									</p>
 								</div>
 							</li>
 							{% endfor %}

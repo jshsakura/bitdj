@@ -16,6 +16,9 @@ class Post(models.Model):
     tag = models.CharField(max_length=200, blank=True, null=True, default="")
     text = models.TextField()
     hit = models.IntegerField(default=0)
+    thumbs_up = models.IntegerField(default=0)
+    thumbs_down = models.IntegerField(default=0)
+
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -25,6 +28,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
     #승인된 댓글만 보기
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
@@ -78,8 +82,15 @@ class Comment(models.Model):
     created_date = models.DateTimeField(default=timezone.now, blank=True, null=True,)
     approved_comment = models.BooleanField(default=True)
 
+    def get_approve(self):
+        return self.approved_comment
+
     def approve(self):
-        self.approved_comment = True
+        if self.approved_comment:
+            self.approved_comment = False
+        else:
+            self.approved_comment = True
+
         self.save()
 
     def __str__(self):

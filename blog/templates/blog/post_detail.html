@@ -23,43 +23,83 @@
 
 						</div>
 						<div class="entry-content">
-							<p>{{ post.text }}
+							<p>{{ post.text|linebreaksbr }}
 							</p>
+
+							{% if user.is_authenticated %}
+							<div class="text-right">
+								<a class="btn btn-xs btn-info"><i class="fa fa-thumbs-o-up"> {{ post.thumbs_up }} 좋아요 </i></a>
+								<a class="btn btn-xs btn-default"><i class="fa fa-thumbs-o-down"> {{ post.thumbs_down }} 별로에요 </i></a>
+							</div>
+							{% endif %}
 						</div>
 
 						<div class="post-meta">
 							<ul class="pull-left list-inline author-meta">
 								<li class="date"> {{ post.published_date }} {{ search_text }}</li>
-								<li class="author">By <a href="#">{{ post.email }} </a></li>
+								<li class="author">By <a href="#">{{ post.email.get_full_name }} </a></li>
 							</ul>
 							<ul class="pull-right list-inline social-share">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter"></i></a></li>
-								<li><a href=""><i class="fa fa-pinterest"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-								<li><a href=""><i class="fa fa-instagram"></i></a></li>
+								{% if post.email.get_facebook %}
+								<li><a href="{{ post.email.get_facebook }}"><i class="fa fa-facebook"></i></a></li>
+								{% endif%}
+
+								{% if post.email.get_twitter %}
+								<li><a href="{{ post.email.get_twitter }}"><i class="fa fa-twitter"></i></a></li>
+								{% endif%}
+
+								{% if post.email.get_pinterest %}
+								<li><a href="{{ post.email.get_pinterest }}"><i class="fa fa-pinterest"></i></a></li>
+								{% endif%}
+
+								{% if post.email.get_instagram %}
+								<li><a href="{{ post.email.get_instagram }}"><i class="fa fa-instagram"></i></a></li>
+								{% endif%}
+
+								{% if post.email.get_google_plus %}
+								<li><a href="{{ post.email.get_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+								{% endif%}
 							</ul>
 						</div>
 					</div>
 				</article>
 				<div class="top-comment"><!--top comment-->
-					<img src="/static/assets/images/comment.jpg" class="pull-left img-circle" alt="">
-					<h4><a href="">Ricard Goff</a></h4>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy hello ro mod tempor
-						invidunt ut labore et dolore magna aliquyam erat.</p>
+					<img style="width:120px;height:120px;" src="{{ post.email.get_image.url }}" class="pull-left img-circle" alt="">
+
+					<h4><a href="">{{ post.email.get_full_name }}</a></h4>
+					<p>{{ post.email.get_about|linebreaksbr }}</p>
 					<ul class="list-inline social-share">
-						<li><a href=""><i class="fa fa-facebook"></i></a></li>
-						<li><a href=""><i class="fa fa-twitter"></i></a></li>
-						<li><a href=""><i class="fa fa-pinterest"></i></a></li>
-						<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-						<li><a href=""><i class="fa fa-instagram"></i></a></li>
+						{% if post.email.get_facebook %}
+						<li><a href="{{ post.email.get_facebook }}"><i class="fa fa-facebook"></i></a></li>
+						{% endif%}
+
+						{% if post.email.get_twitter %}
+						<li><a href="{{ post.email.get_twitter }}"><i class="fa fa-twitter"></i></a></li>
+						{% endif%}
+
+						{% if post.email.get_pinterest %}
+						<li><a href="{{ post.email.get_pinterest }}"><i class="fa fa-pinterest"></i></a></li>
+						{% endif%}
+
+						{% if post.email.get_instagram %}
+						<li><a href="{{ post.email.get_instagram }}"><i class="fa fa-instagram"></i></a></li>
+						{% endif%}
+
+						{% if post.email.get_google_plus %}
+						<li><a href="{{ post.email.get_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+						{% endif%}
+
 					</ul>
 				</div>
+
+
+
 				<div class="row"><!--blog next previous-->
 					<div class="col-md-6">
 						<div class="single-blog-box">
 							<a href="{% url 'post_detail' pk=post.get_prev_object.id %}">
-								<img src="/static/assets/images/blog-next-1.jpg" alt="">
+								<img src="{{ post.get_prev_object.image.url }}" alt="">
+
 								<div class="overlay">
 									<div class="promo-text">
 										<p><i class=" pull-left fa fa-angle-left"></i></p>
@@ -72,7 +112,7 @@
 					<div class="col-md-6">
 						<div class="single-blog-box">
 							<a href="{% url 'post_detail' pk=post.get_next_object.id %}">
-								<img src="/static/assets/images/blog-next-2.jpg" alt="">
+								<img src="{{ post.get_next_object.image.url }}" alt="">
 								<div class="overlay">
 									<div class="promo-text">
 										<p><i class="pull-right fa fa-angle-right"></i></p>
@@ -140,10 +180,18 @@
 							<div class="media-body">
 								<div class="media-heading">
 									<h3 class="text-uppercase">
-										<a href="">{{ comment.name }}</a>
+										<a href="mailto:{{ comment.email }}"><b>{{ comment.name }}</b>
+										{% if comment.email %}
+											<i>{{ comment.email }}</i>
+										{% endif %}
+										</a>
 										{% if user.is_authenticated or comment.approved_comment %}
 										<a class="pull-right reply-btn" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-										<a class="pull-right reply-btn" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+											{% if comment.approved_comment == True %}
+										<a class="pull-right reply-btn" href="{% url 'comment_approve' pk=comment.pk %}"><span class="fa fa-eye"></span></a>
+											{% else %}
+										<a class="pull-right reply-btn" href="{% url 'comment_approve' pk=comment.pk %}"><span class="fa fa-eye-slash"></span></a>
+											{% endif %}
 										{% endif %}
 										<!--<a href="" class="pull-right reply-btn">reply</a>-->
 									</h3>
@@ -208,10 +256,18 @@
 						{% csrf_token %}
 						<div class="form-group">
 							<div class="col-md-6">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+								{% if user.is_authenticated %}
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required value="{{ user.get_full_name }}">
+								{% else %}
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required value="">
+								{% endif %}
 							</div>
 							<div class="col-md-6">
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+								{% if user.is_authenticated %}
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" required value="{{ user.get_username }}" >
+								{% else %}
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" required value="" >
+								{% endif %}
 							</div>
 						</div>
 						<!--<div class="form-group">
@@ -224,7 +280,7 @@
 								<textarea class="form-control" rows="6" name="text" placeholder="Write Massage" required></textarea>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-default">Post Comment</button>
+						<button type="submit" class="btn send-btn">Post Comment</button>
 					</form>
 				</div>
             </div>
