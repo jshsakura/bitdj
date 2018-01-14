@@ -3,8 +3,10 @@ from django.forms import forms
 from django.utils.safestring import mark_safe
 from django.utils import timezone
 
-from .models import Post, Contact
+from .models import Post, Contact , Comment
 #admin.site.register(Post.ModelAdmin);
+
+admin.site.register(Comment)
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -42,6 +44,7 @@ class PostAdmin(admin.ModelAdmin):
         })
     )
     ordering = ('-published_date',)
+    pass
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):

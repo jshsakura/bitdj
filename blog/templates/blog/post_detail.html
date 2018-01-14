@@ -58,12 +58,12 @@
 				<div class="row"><!--blog next previous-->
 					<div class="col-md-6">
 						<div class="single-blog-box">
-							<a href="#">
+							<a href="{% url 'post_detail' pk=post.get_prev_object.id %}">
 								<img src="/static/assets/images/blog-next-1.jpg" alt="">
 								<div class="overlay">
 									<div class="promo-text">
 										<p><i class=" pull-left fa fa-angle-left"></i></p>
-										<h5>A Good Thought Never be false</h5>
+										<h5>{{ post.get_prev_object.title }}</h5>
 									</div>
 								</div>
 							</a>
@@ -71,12 +71,12 @@
 					</div>
 					<div class="col-md-6">
 						<div class="single-blog-box">
-							<a href="#">
+							<a href="{% url 'post_detail' pk=post.get_next_object.id %}">
 								<img src="/static/assets/images/blog-next-2.jpg" alt="">
 								<div class="overlay">
 									<div class="promo-text">
 										<p><i class="pull-right fa fa-angle-right"></i></p>
-										<h5>The Reason Why Everyone Love Hill</h5>
+										<h5>{{ post.get_next_object.title }}</h5>
 									</div>
 								</div>
 							</a>
@@ -128,32 +128,40 @@
 				</div>
 				<div class="comment-area">
 					<div class="comment-heading">
-						<h3>3 Thoughts</h3>
+						<h3>{{ post.comments.count }} Thoughts</h3>
 					</div>
+
+					{% for comment in post.comments.all %}
 					<div class="single-comment">
 						<div class="media">
 							<div class="media-left text-center">
-								<a href=""><img class="media-object" src="/static/assets/images/reply-1.jpg" alt=""></a>
+								<a href=""><img class="media-object" src="/static/assets/images/blog/comments.png" style="width:60px" alt=""></a>
 							</div>
 							<div class="media-body">
 								<div class="media-heading">
 									<h3 class="text-uppercase">
-										<a href="">John Smith</a>
-										<a href="" class="pull-right reply-btn">reply</a>
+										<a href="">{{ comment.name }}</a>
+										{% if user.is_authenticated or comment.approved_comment %}
+										<a class="pull-right reply-btn" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+										<a class="pull-right reply-btn" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+										{% endif %}
+										<!--<a href="" class="pull-right reply-btn">reply</a>-->
 									</h3>
 								</div>
 								<p class="comment-date">
-									December, 02, 2017 at 5:57 PM
+									{{ comment.created_date }}
 								</p>
 								<p class="comment-p">
-									Nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sdiam
-									voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-									gubergren, no sea takimata sanctus est.
+									{{ comment.text|linebreaks }}
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="single-comment single-comment-reply">
+					{% empty %}
+						<p>No comments here yet :(</p>
+					{% endfor %}
+
+					<!--<div class="single-comment single-comment-reply">
 						<div class="media">
 							<div class="media-left text-center">
 								<a href=""> <img class="media-object" src="/static/assets/images/reply-2.jpg" alt=""></a>
@@ -191,12 +199,13 @@
 								</p>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
 				<!--leave comment-->
 				<div class="leave-comment">
 					<h4>Leave a reply</h4>
-					<form class="form-horizontal contact-form"   method="post" action="#">
+					<form class="form-horizontal contact-form"   method="post" action="{% url 'add_comment_to_post' pk=post.pk %}">
+						{% csrf_token %}
 						<div class="form-group">
 							<div class="col-md-6">
 								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
@@ -205,17 +214,17 @@
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 							</div>
 						</div>
-						<div class="form-group">
+						<!--<div class="form-group">
 							<div class="col-md-12">
 								<input type="text" class="form-control" id="subject" name="subject" placeholder="Website url">
 							</div>
-						</div>
+						</div>-->
 						<div class="form-group">
 							<div class="col-md-12">
-								<textarea class="form-control" rows="6" name="message" placeholder="Write Massage" required></textarea>
+								<textarea class="form-control" rows="6" name="text" placeholder="Write Massage" required></textarea>
 							</div>
 						</div>
-						<button type="submit" class="btn send-btn">Post Comment</button>
+						<button type="submit" class="btn btn-default">Post Comment</button>
 					</form>
 				</div>
             </div>

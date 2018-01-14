@@ -184,7 +184,7 @@
 									{% endif %}
 								</div>
 								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="{% url 'post_detail' pk=top4s.pk %}">{{ top4s.title }}</a></h2>
+									<h2 class="text-uppercase"><a href="{% url 'post_detail' pk=top4s.pk %}">{{ top4s.title }}</a> [{{ top4s.comments.count }}]</h2>
 									<p>{{ top4s.published_date }}</p>
 								</div>
 							</li>

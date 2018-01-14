@@ -27,7 +27,7 @@
 
 						<div class="post-content">
 							<div class="entry-header text-left text-uppercase">
-								<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+								<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a> <small>[{{ post.comments.count }}]</small></h2>
 								<a href="" class="post-cat">{{ post.tag }}</a>
 							</div>
 							<div class="entry-content">

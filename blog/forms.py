@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 from .models import UploadFileModel
-from .models import Post
+from .models import Post, Comment
 
 class UploadFileForm(forms.ModelForm):
     class Meta:
@@ -34,3 +34,9 @@ class PostForm(forms.Form):
     #     if any(word in text for word in words):
     #         raise forms.ValidationError(error_message)
     #     return text
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'text',)
