@@ -82,8 +82,9 @@
 					</ul>
 				</div>
 				<div class="show-search">
-					<form role="search" method="get" id="searchform" action="#">
-						<input type="text" placeholder="Search and hit enter..." name="s" id="s">
+					<form role="search" method="POST" id="searchform" action="{% url 'post_list' %}">
+						{% csrf_token %}
+						<input type="text" name="search_text" placeholder="Search and hit enter..." id="search_text" value="{{ search_text }}" >
 					</form>
 				</div>
 			</div>
@@ -168,48 +169,27 @@
 						</ul>
 					</aside>-->
 					<aside class="widget latest-post-widget">
-						<h2 class="widget-title text-uppercase text-center">Latest Posts</h2>
+						<h2 class="widget-title text-uppercase text-center">Top View Posts</h2>
 						<ul>
+
+							{% for top4s in top4 %}
 							<li class="media">
 								<div class="media-left">
-									<a href="#" class="popular-img"><img src="/static/assets/images/recent-1.jpg" alt="">
+									{% if top4s.image %}
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:105px" src="{{ top4s.image.url }}" alt="">
 									</a>
+									{% else %}
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:105px" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+									</a>
+									{% endif %}
 								</div>
 								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="#">A Theme to Tell Stories</a></h2>
-									<p>April 20, 2017</p>
+									<h2 class="text-uppercase"><a href="{% url 'post_detail' pk=top4s.pk %}">{{ top4s.title }}</a></h2>
+									<p>{{ top4s.published_date }}</p>
 								</div>
 							</li>
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="popular-img"><img src="/static/assets/images/recent-2.jpg" alt="">
-									</a>
-								</div>
-								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="#">Just Wondering at Beach</a></h2>
-									<p>May 27, 2017</p>
-								</div>
-							</li>
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="popular-img"><img src="/static/assets/images/recent-3.jpg" alt="">
-									</a>
-								</div>
-								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="#">Lorem Ipsum Dolor sit amet</a></h2>
-									<p>April 20, 2017</p>
-								</div>
-							</li>
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="popular-img"><img src="/static/assets/images/recent-4.jpg" alt="">
-									</a>
-								</div>
-								<div class="latest-post-content">
-									<h2 class="text-uppercase"><a href="#">Lorem Ipsum Dolor sit amet</a></h2>
-									<p>May 27, 2017</p>
-								</div>
-							</li>
+							{% endfor %}
+
 						</ul>
 					</aside>
 					<aside class="widget insta-widget">
@@ -464,16 +444,16 @@
 				<div class="widget ">
 					<img src="/static/assets/images/portfolio/logo-w.png" alt="">
 				</div>
-				<p>Ducks Life X Jshsakura</p>
+				<p><h5>Ducks Life X Jshsakura</h5></p>
 
 			</div>
 			<div class="footer-widget">
 				<div class="widget">
 					<div class="address">
 					<h5 class="text-uppercase">contact Info</h5>
-					<p> Seoul , Korea</p>
-					<p> Phone: +82 10 2520 0725</p>
-					<a href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a>
+					<p> Seoul , Incheon Korea</p>
+						<h5><a style="color:#ffffff" href="mailto:ejrgus3@gmail.com">ejrgus3@gmail.com</a></h5>
+						<h5><a style="color:#ffffff" href="mailto:jshsakura@gmail.com">jshsakura@gmail.com</a></h5>
 				</div>
 				</div>
 			</div>
@@ -482,13 +462,16 @@
 				<h5 class="text-uppercase">System Info</h5>
 				<p>Django 2.0 & Python 3.5</p>
 				<p>Nginx 1.10</p>
+				<p>Php7 , Java8</p>
 			</div>
 		</div>
 	</div>
+
 	<div class="container-fluid text-center ft-copyright">
-		<p>&copy;  2018   <a href="">DxJ Workspace </a> - Designed with by <a href="http://shapedtheme.com">ShapedTheme</a></p>
+		<p>&copy;  2015   <a href="">DxJ Workspace </a> - Designed with by <a href="https://wrapbootstrap.com">Wrapbootstrap</a></p>
 	</div>
 </footer>
+
 <div class="scroll-up">
 	<a href="#"><i class="fa fa-angle-up"></i></a>
 </div>
