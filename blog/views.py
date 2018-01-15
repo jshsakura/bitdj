@@ -3,11 +3,15 @@ from django.contrib.redirects.models import Redirect
 from django.db.models.functions import Coalesce
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
+from django.views.decorators.http import require_POST
+
 from .models import Post, Comment
 from .forms import UploadFileForm, PostForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.db.models import Q
+from account.slacker import slack_notify
+
 
 def post_list(request):
     #POST 메소드의 검색어 조회
@@ -68,6 +72,7 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post, 'top4':post_top4, 'search_text':search_text})
 
 #코멘트 작성 뷰
+@require_POST
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -76,6 +81,18 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+
+            attachments = [{
+                "color": "#da521e",
+                "author_name": comment.name,
+                "author_link": "http://http://jshsakura.iptime.org/post/"+pk,
+                "author_icon": 'http://jshsakura.iptime.org/media/profile_image/2018/01/15/download.jpeg',
+                "title": post.title,
+                "title_link": "http://http://jshsakura.iptime.org/post/"+pk,
+                "fallback": "신규 코멘트 알림",
+                "text": "{}".format(comment.text)
+            }]
+            slack_notify(text='신규 코멘트 작성' ,channel='#django_blog', username='Django Bot', attachments=attachments)
             return redirect('post_detail', pk=post.pk)
     else:
         #form = CommentForm()

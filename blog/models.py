@@ -38,20 +38,19 @@ class Post(models.Model):
         try:
             id = Post.objects.filter(id__gt=self.id).order_by("id")[0:1].get().id
             next_object = get_object_or_404(Post, pk=id)
+            return next_object
         except Post.DoesNotExist:
-            id = Post.objects.aggregate(Min("id"))['id__min']
-            next_object = get_object_or_404(Post, pk=id)
-        return next_object
+            return
 
     # 이전글 가져오기
     def get_prev_object(self):
         try:
             id = Post.objects.filter(id__lt=self.id).order_by("-id")[0:1].get().id
             prev_object = get_object_or_404(Post, pk=id)
+            return prev_object
         except Post.DoesNotExist:
-            id = Post.objects.aggregate(Max("id"))['id__max']
-            prev_object = get_object_or_404(Post, pk=id)
-        return prev_object
+            return
+
 
 
 class Contact(models.Model):

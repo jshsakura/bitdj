@@ -113,7 +113,7 @@
 								<p>Python X Java Developer</p>
 							</div>
 						</div>
-						<div class="social-share">
+						<!--<div class="social-share">
 							<ul class="list-inline">
 								<li><a class="s-facebook" href=""><i class="fa fa-facebook"></i></a></li>
 								<li><a class="s-twitter" href=""><i class="fa fa-twitter"></i></a></li>
@@ -121,10 +121,7 @@
 								<li><a class="s-linkedin" href=""><i class="fa fa-linkedin"></i></a></li>
 								<li><a class="s-instagram" href=""><i class="fa fa-instagram"></i></a></li>
 							</ul>
-						</div>
-
-                        <br>
-
+						</div>-->
 
 						{% if user.username == "devdj" %}
                         <a href="/post_new" class="btn btn-default text-uppercase text-center">
@@ -176,10 +173,10 @@
 							<li class="media">
 								<div class="media-left">
 									{% if top4s.image %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px" src="{{ top4s.image.url }}" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px;" src="{{ top4s.image.url }}" alt="">
 									</a>
 									{% else %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px;" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
 									</a>
 									{% endif %}
 								</div>
@@ -193,9 +190,7 @@
 										{% endif %}
 										</a>
 									</h2>
-									<p>
-										조회수 : {{ top4s.hit }}<br>
-										댓글수 : {{ top4s.comments.count }}
+									<p><small>조회수 : {{ top4s.hit }}<br>댓글수 : {{ top4s.comments.count }}</small>
 									</p>
 								</div>
 							</li>
@@ -313,7 +308,7 @@
 
 
 <div class="container-fluid insta-feed text-center">
-	<h2 class="text-uppercase">DXJ WORKSPACE @ <a href="">PROJECT</a></h2>
+	<h2 class="text-uppercase">dxj workspace @ <a href="https://github.com/jshsakura/bitdj">github.com</a></h2>
 	<div id="footer-instagram" class="footer-insta">
 		<div class="item">
 			<div class="single-instagram">
