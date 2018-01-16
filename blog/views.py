@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, render_to_response, redi
 from django.views.decorators.http import require_POST
 
 from .models import Post, Comment
-from .forms import UploadFileForm, PostForm, CommentForm
+from .forms import UploadFileForm, PostForm, CommentForm ,ContactForm
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.db.models import Q
@@ -56,9 +56,7 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts': post_paging, 'top4':post_top4, 'search_text':search_text})
 
 
-def contact(request):
 
-    return render(request, 'blog/contact.html', {})
 
 def post_detail(request, pk):
     search_text = request.GET.get('search_text', '')
@@ -85,14 +83,14 @@ def add_comment_to_post(request, pk):
             attachments = [{
                 "color": "#da521e",
                 "author_name": comment.name,
-                "author_link": "http://http://jshsakura.iptime.org/post/"+pk,
+                "author_link": "http://jshsakura.iptime.org/post/"+pk,
                 "author_icon": 'http://jshsakura.iptime.org/media/profile_image/2018/01/15/download.jpeg',
                 "title": post.title,
-                "title_link": "http://http://jshsakura.iptime.org/post/"+pk,
+                "title_link": "http://jshsakura.iptime.org/post/"+pk,
                 "fallback": "신규 코멘트 알림",
                 "text": "{}".format(comment.text)
             }]
-            slack_notify(text='신규 코멘트 작성' ,channel='#django_blog', username='Django Bot', attachments=attachments)
+            slack_notify(text='신규 COMMENT 알림' ,channel='#django_blog', username='Django Bot', attachments=attachments)
             return redirect('post_detail', pk=post.pk)
     else:
         #form = CommentForm()
@@ -125,7 +123,7 @@ def post_new(request):
             sender = form.cleaned_data['sender']
             created_date = form.cleaned_data['created_date']
             published_date = form.cleaned_data['published_date']
-
+            form.save()
             return HttpResponseRedirect('blog/post_list/') # Redirect after POST
     else:
         form = PostForm() # An unbound form
@@ -143,3 +141,37 @@ def post_upload(request):
     else:
         form = UploadFileForm()
     return render(request, 'blog/upload.html', {'form': form})
+
+
+def contact(request):
+    search_text = request.GET.get('search_text', '')
+    # 조회수 탑4
+    post_top4 = Post.objects.filter(published_date__lte=timezone.now()).order_by('-hit')[:4]
+    if request.method == 'POST': # 폼이 제출되었을 경우...
+        form = ContactForm(request.POST) # 폼은 POST 데이터에 바인드됨
+        if form.is_valid(): # 모든 유효성 검증 규칙을 통과
+            # form.cleaned_data에 있는 데이터를 처리
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            text = form.cleaned_data['text']
+            form.save()
+
+            attachments = [{
+                "color": "#da521e",
+                "author_name": name,
+                "author_link": "http://jshsakura.iptime.org/admin/blog/contact/"+form.auto_id+"/change/",
+                "author_icon": 'http://jshsakura.iptime.org/media/profile_image/2018/01/15/download.jpeg',
+                "title": email,
+                "title_link": "http://jshsakura.iptime.org/admin/blog/contact/"+form.auto_id+"/change/",
+                "fallback": "신규 CONTACT US 알림",
+                "text": "{}".format(text)
+            }]
+            slack_notify(text='신규 CONTACT US 알림', channel='#django_blog', username='Django Bot', attachments=attachments)
+            return render(request, 'blog/contact_ok.html', {'top4': post_top4})
+    else:
+            return render(request, 'blog/contact.html', {'top4': post_top4})
+
+def contact_ok(request):
+    # 조회수 탑4
+    post_top4 = Post.objects.filter(published_date__lte=timezone.now()).order_by('-hit')[:4]
+    return render(request, 'blog/contact_ok.html', {'top4': post_top4})

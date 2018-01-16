@@ -92,7 +92,7 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<div class="kotha-logo text-center">
-		<h1><a href="/blog"><img src="/static/assets/images/portfolio/logo.png" style="width:350px" alt="kothPro"></a></h1>
+		<h1><a href="/blog"><img src="/static/assets/images/portfolio/logo_gray.png" style="width:350px" alt="kothPro"></a></h1>
 	</div>
 </header>
 
@@ -173,10 +173,10 @@
 							<li class="media">
 								<div class="media-left">
 									{% if top4s.image %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px;" src="{{ top4s.image.url }}" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:125px;" src="{{ top4s.image.url }}" alt="">
 									</a>
 									{% else %}
-									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:120px;" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
+									<a href="{% url 'post_detail' pk=top4s.pk %}" class="popular-img"><img style="width:125px;" src="/static/assets/images/post-thumb-m-1.jpg" alt="">
 									</a>
 									{% endif %}
 								</div>
@@ -448,7 +448,7 @@
 		<div class="footer-widget-row" >
 			<div class="footer-widget text-center">
 				<div class="widget ">
-					<img src="/static/assets/images/portfolio/logo-w.png" alt="">
+					<img src="/static/assets/images/portfolio/logo_white.png" alt="">
 				</div>
 				<p><h5>Ducks Life X Jshsakura</h5></p>
 

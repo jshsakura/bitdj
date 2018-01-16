@@ -17,18 +17,12 @@
 								contact us</h2>
 						</div>
 						<div class="entry-content">
-							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirtempor
-								invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero accusam et
-								justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctusest
-								Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elised
-								diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sdiam
-								voluptua. At vero eos et accusam.
-							</p>
+							<p>DxjWorkspace Team<br>저희에게 전달하실 내용이 있는 경우 메세지를 남겨주세요.</p>
 						</div>
 						<div class="leave-comment">
 							<h4>SEND MASSAGE</h4>
-							<form class="form-horizontal contact-form" method="post" action="sendemail.php"
-							>
+							<form class="form-horizontal contact-form" method="post" action="{% url 'contact' %}">
+								{% csrf_token %}
 								<div class="form-group">
 									<div class="col-md-6">
 										<input type="text" class="form-control" id="name" name="name"
@@ -36,22 +30,22 @@
 									</div>
 									<div class="col-md-6">
 										<input type="email" class="form-control" id="email" name="email"
-										       placeholder="Email" required>
+										       placeholder="Email">
 									</div>
 								</div>
-								<div class="form-group">
+								<!--<div class="form-group">
 									<div class="col-md-12">
 										<input type="text" class="form-control" id="subject" name="subject"
 										       placeholder="Subject" required>
 									</div>
-								</div>
+								</div>-->
 								<div class="form-group">
 									<div class="col-md-12">
-										<textarea class="form-control" rows="6" name="message"
+										<textarea class="form-control" rows="6" name="text"
 										          placeholder="Write Massage" required></textarea>
 									</div>
 								</div>
-								<button type="submit" class="btn send-btn"> SEND MASSAGE</button>
+								<button type="submit" class="btn send-btn pull-right"> SEND MASSAGE</button>
 							</form>
 						</div>
 					</div>
@@ -73,17 +67,17 @@ alternative js for google map
     function initialize() {
         var mapOptions = {
             zoom: 14,
-            center: new google.maps.LatLng(23.7893837, 90.38596079999999),
+            center: new google.maps.LatLng(37.586146, 126.976846),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
         };
         var map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(23.7893837, 90.38596079999999),
+            position: new google.maps.LatLng(37.586146, 126.976846),
         });
         marker.setMap(map);
         var infowindow = new google.maps.InfoWindow({
-            content: "ShapedTheme"
+            content: "DxjWorkspace"
         });
         infowindow.open(map, marker);
     }

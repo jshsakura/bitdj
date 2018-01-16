@@ -23,8 +23,6 @@ def index(request):
     else:
         Portfolios = Portfolio_all_list
 
-
-
     return render(request, 'portfolio/index.html', {'Portfolios': Portfolios,'search_text':search_text})
 
 

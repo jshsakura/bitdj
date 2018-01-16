@@ -50,7 +50,7 @@ class PostAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_per_page = 15
     list_display = ['id', 'name', 'email', 'text', 'created_date','published_date', ]
-    list_display_links = ['id', 'name']
+    list_display_links = ['id', 'name', 'email']
     actions = ['make_published', 'make_draft']
 
     #admin action 추가
@@ -77,7 +77,7 @@ class ContactAdmin(admin.ModelAdmin):
     fieldsets = (
         ('제목 및 내용', {
             'fields': (
-                'name', 'email', 'image', 'clean_content',
+                'name', 'email', 'image', 'text',
             )
         }),
         ('작성일 및 배포일', {
