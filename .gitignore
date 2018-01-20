@@ -24,4 +24,5 @@
 /.env
 /account/slacker.py
 /static
+/README.md
 
