@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.urls import include
+
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,4 +14,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     url(r'^comment/(?P<pk>[0-9]+)/approve/$', views.comment_approve, name='comment_approve'),
     url(r'^comment/(?P<pk>[0-9]+)/remove/$', views.comment_remove, name='comment_remove'),
+
+    url(r'^summernote/', include('django_summernote.urls')),
+	url(r'^blog/add/post/$',views.write_form, name='write_form'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

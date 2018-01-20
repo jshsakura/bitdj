@@ -32,10 +32,10 @@
 							</div>
 							<div class="entry-content">
 								<p>
-									{% if post.text|length > 50 %}
-									{{ post.text|slice:"0:50" }}...
+									{% if post.text|striptags|length > 50 %}
+									{{ post.text|striptags|safe|slice:"0:50" }}...
 									{% else %}
-									{{ post.text }}
+									{{ post.text|striptags|safe }}
 									{% endif %}
 								</p>
 							</div>

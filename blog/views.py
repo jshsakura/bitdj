@@ -175,3 +175,16 @@ def contact_ok(request):
     # 조회수 탑4
     post_top4 = Post.objects.filter(published_date__lte=timezone.now()).order_by('-hit')[:4]
     return render(request, 'blog/contact_ok.html', {'top4': post_top4})
+
+#### test writer page
+
+#@login_required
+def write_form(request):
+	page_title = 'write page'
+	tem = loader.get_template('write.html')
+	cont= Context({
+			'page_title':page_title
+		}
+	)
+	return HttpResponse (tem.render(cont))
+	

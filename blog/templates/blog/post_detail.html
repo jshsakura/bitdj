@@ -23,7 +23,8 @@
 
 						</div>
 						<div class="entry-content">
-							<p>{{ post.text|linebreaksbr }}
+							<p>
+								{{ post.text|safe }}
 							</p>
 
 							{% if user.is_authenticated %}

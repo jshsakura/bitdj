@@ -1,19 +1,39 @@
 from django.contrib import admin
-from django.forms import forms
+from django.forms import forms, models
 from django.utils.safestring import mark_safe
 from django.utils import timezone
+from django_summernote.admin import SummernoteModelAdmin
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.settings import summernote_config, get_attachment_model
 
 from .models import Post, Contact , Comment
 #admin.site.register(Post.ModelAdmin);
 
 admin.site.register(Comment)
 
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+__widget__ = SummernoteWidget if summernote_config['iframe'] \
+    else SummernoteInplaceWidget
+
+class PostAdmin(SummernoteModelAdmin):
     list_per_page = 15
     list_display = ['id', 'title','tag', 'text_size', 'hit', 'created_date','published_date', ]
     list_display_links = ['id', 'title']
+    ordering = ('-published_date',)
+
     actions = ['make_published', 'make_draft']
+
+    summer_note_fields = ('text',)
+
+    fieldsets = (
+        ('제목 및 내용', {
+            'fields': (
+                'email', 'image', 'title', 'tag', 'text',
+            )
+        }),
+        ('작성일 및 배포일', {
+            'fields': ('created_date', 'published_date',)
+        })
+    )
 
     #admin action 추가
     # 글자수 컬럼 추가
@@ -33,18 +53,7 @@ class PostAdmin(admin.ModelAdmin):
 
     make_draft.short_description = '선택한 포스팅을 비공개 상태로 변경'
 
-    fieldsets = (
-        ('제목 및 내용', {
-            'fields': (
-                'email', 'image', 'title', 'tag', 'text',
-            )
-        }),
-        ('작성일 및 배포일', {
-            'fields': ('created_date', 'published_date',)
-        })
-    )
-    ordering = ('-published_date',)
-    pass
+admin.site.register(Post, PostAdmin)
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):

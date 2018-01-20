@@ -50,6 +50,8 @@ class Post(models.Model):
             return prev_object
         except Post.DoesNotExist:
             return
+            # id = Post.objects.aggregate(Max("id"))['id__max']
+            # prev_object = get_object_or_404(Post, pk=id)
 
 
 
@@ -66,7 +68,7 @@ class Contact(models.Model):
         self.save()
 
     def __str__(self):
-        return self.name
+        return self.email
 
 class UploadFileModel(models.Model):
     title = models.TextField(default='')

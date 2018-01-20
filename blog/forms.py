@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
+from django_summernote import fields as summer_fields
 
 from .models import UploadFileModel
 from .models import Post, Comment ,Contact
@@ -15,12 +16,12 @@ class UploadFileForm(forms.ModelForm):
         self.fields['file'].required = False
 
 
-class PostForm(forms.Form):
+class PostForm(forms.ModelForm):
     email = forms.EmailField()
     image = forms.ImageField()
     post_img = forms.CharField(max_length=100)
     tag = forms.CharField(max_length=100)
-    text = forms.CharField()
+    text = summer_fields.SummernoteTextFormField(error_messages={'required':(u'데이터를 입력해주세요'),})
 
     created_date = forms.DateField(required=False)
     published_date = forms.DateField(required=False)
