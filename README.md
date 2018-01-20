@@ -1,5 +1,5 @@
 
-<img src="http://jshsakura.iptime.org/static/assets/images/portfolio/logo.png" width="40%">
+<img src="http://jshsakura.iptime.org/static/assets/images/portfolio/logo_gray.png" width="40%">
 <br>
 
 >## Duck's Life X Jshsakura
